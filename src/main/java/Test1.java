@@ -43,9 +43,9 @@ public class Test1 extends AbstractTest {
     private static Thread th() {
         return new Thread(() -> {
         put(val.incrementAndGet());
-        if (val.get()==3){
+
             val.compareAndSet(3,0);
-        }
+
 
 
         });

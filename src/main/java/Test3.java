@@ -37,10 +37,11 @@ public class Test3 extends AbstractTest {
 
     private static Thread th() {
         return new Thread(() -> {
+
 //        немного читерский вариант
 //        put(Integer.parseInt(Thread.currentThread().getName().substring(7, Thread.currentThread().getName().length()))%3+1);
 
-           while (size()!=3){
+           while (true){
                     if (val.compareAndSet(false,true))
                         if (!containsKey(size() + 1) ) {
                             put(size() + 1);

@@ -31,14 +31,24 @@ public class Test3 extends AbstractTest {
             clear();
 
             System.out.println("Checked " + i);
+
         }
     }
 
     private static Thread th() {
         return new Thread(() -> {
-            // Правки можно внисить от этой линии
+//        немного читерский вариант
+//        put(Integer.parseInt(Thread.currentThread().getName().substring(7, Thread.currentThread().getName().length()))%3+1);
 
-            // До этой
+           while (size()!=3){
+                    if (val.compareAndSet(false,true))
+                        if (!containsKey(size() + 1) ) {
+                            put(size() + 1);
+                            val.compareAndSet(true, false);
+                            break;
+                        }
+                }
+
         });
     }
 }

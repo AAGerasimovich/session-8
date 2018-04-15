@@ -30,9 +30,19 @@ public class Test2 extends AbstractTest {
 
     private static Thread th() {
         return new Thread(() -> {
-            // Правки можно внисить от этой линии
 
-            // До этой
+           if( val.compareAndSet(false, true)){
+               put(1);
+           } else {
+               put(2);
+               val.compareAndSet(true, false);
+           }
+
+
+
+
+
+
         });
     }
 

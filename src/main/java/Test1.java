@@ -1,9 +1,16 @@
+
+import java.util.concurrent.locks.Lock;
+
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
+
 
 public class Test1 extends AbstractTest {
     private static final AtomicInteger val = new AtomicInteger();
 
+
     public static void main(String... args) throws InterruptedException {
+
         for (int i = 0; i < 10_000; i++) {
             assert size() == 0;
 
@@ -35,9 +42,12 @@ public class Test1 extends AbstractTest {
 
     private static Thread th() {
         return new Thread(() -> {
-            // Правки можно внисить от этой линии
+        put(val.incrementAndGet());
+        if (val.get()==3){
+            val.compareAndSet(3,0);
+        }
 
-            // До этой
+
         });
     }
 
